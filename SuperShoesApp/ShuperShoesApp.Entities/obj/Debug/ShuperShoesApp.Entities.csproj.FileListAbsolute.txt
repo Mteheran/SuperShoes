@@ -1,5 +1,0 @@
-C:\SuperShoesApp\SuperShoesApp\ShuperShoesApp.Entities\bin\Debug\ShuperShoesApp.Entities.dll
-C:\SuperShoesApp\SuperShoesApp\ShuperShoesApp.Entities\bin\Debug\ShuperShoesApp.Entities.pdb
-C:\SuperShoesApp\SuperShoesApp\ShuperShoesApp.Entities\obj\Debug\ShuperShoesApp.Entities.dll
-C:\SuperShoesApp\SuperShoesApp\ShuperShoesApp.Entities\obj\Debug\ShuperShoesApp.Entities.pdb
-C:\SuperShoesApp\SuperShoesApp\ShuperShoesApp.Entities\obj\Debug\ShuperShoesApp.Entities.csprojResolveAssemblyReference.cache

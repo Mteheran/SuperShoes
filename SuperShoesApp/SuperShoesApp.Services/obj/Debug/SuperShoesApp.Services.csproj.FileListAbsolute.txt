@@ -1,7 +1,0 @@
-C:\SuperShoesApp\SuperShoesApp\SuperShoesApp.Services\bin\Debug\SuperShoesApp.Services.dll
-C:\SuperShoesApp\SuperShoesApp\SuperShoesApp.Services\bin\Debug\SuperShoesApp.Services.pdb
-C:\SuperShoesApp\SuperShoesApp\SuperShoesApp.Services\bin\Debug\Newtonsoft.Json.dll
-C:\SuperShoesApp\SuperShoesApp\SuperShoesApp.Services\bin\Debug\Newtonsoft.Json.xml
-C:\SuperShoesApp\SuperShoesApp\SuperShoesApp.Services\obj\Debug\SuperShoesApp.Services.dll
-C:\SuperShoesApp\SuperShoesApp\SuperShoesApp.Services\obj\Debug\SuperShoesApp.Services.pdb
-C:\SuperShoesApp\SuperShoesApp\SuperShoesApp.Services\obj\Debug\SuperShoesApp.Services.csprojResolveAssemblyReference.cache
