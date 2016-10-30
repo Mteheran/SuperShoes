@@ -1,0 +1,69 @@
+﻿@model IEnumerable<ShuperShoesApp.Entities.Article>
+
+@{
+    ViewBag.Title = SuperShoesApp.Resources.Main.Articles;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="panel panel-featured">
+    <header class="panel-heading">
+        <h2 class="panel-title">@SuperShoesApp.Resources.Main.Articles</h2>
+    </header>
+    <div class="panel-body">
+        <div class="mb-md">
+            <a class="btn btn-primary" href="@Url.Action("Create")" title="@SuperShoesApp.Resources.Main.Create">
+                @SuperShoesApp.Resources.Main.Create <i class="fa fa-plus"></i>
+            </a>
+        </div>
+        <table class="table table-bordered table-striped mb-none" id="datatable-default">
+            <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Description)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Price)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Total_in_shelf)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Total_in_vault)
+                        </th>
+                        <th></th>
+                    </tr>
+              </thead>
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Price)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Total_in_shelf)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Total_in_vault)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |                          
+                            @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+</table>
+    </div>
+</section>

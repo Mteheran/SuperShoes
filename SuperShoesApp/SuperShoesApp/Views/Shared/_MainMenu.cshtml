@@ -1,0 +1,58 @@
+﻿
+<!-- start: sidebar -->
+<aside id="sidebar-left" class="sidebar-left">
+
+    <div class="sidebar-header">
+        <div class="sidebar-title">
+           @SuperShoesApp.Resources.Main.Menu
+        </div>
+        <div class="sidebar-toggle hidden-xs" data-toggle-class="sidebar-left-collapsed" data-target="html" data-fire-event="sidebar-left-toggle">
+            <i class="fa fa-bars" aria-label="Toggle sidebar"></i>
+        </div>
+    </div>
+
+        <div class="nano">
+            <div class="nano-content">
+                <nav id="menu" class="nav-main" role="navigation">
+                    <ul class="nav nav-main">
+                        <li class="nav-children">
+                            <a href='@Url.Action("Index", "Home")'>
+                                <i class="fa fa-home" aria-hidden="true"></i>
+                                <span>@SuperShoesApp.Resources.Main.Home</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-children">
+                            <a href='@Url.Action("Index", "Stores")'>
+                                <i class="fa fa-certificate" aria-hidden="true"></i>
+                                <span>@SuperShoesApp.Resources.Main.Stores</span>
+                            </a>
+                        </li>          
+                        <li class="nav-children">
+                            <a href='@Url.Action("Index", "Articles")'>
+                                <i class="fa fa-certificate" aria-hidden="true"></i>
+                                <span>@SuperShoesApp.Resources.Main.Articles</span>
+                            </a>
+                        </li>                         
+                    </ul>
+                </nav>
+            </div>
+
+            <script>
+				// Preserve Scroll Position
+				if (typeof localStorage !== 'undefined') {
+					if (localStorage.getItem('sidebar-left-position') !== null) {
+						var initialPosition = localStorage.getItem('sidebar-left-position'),
+							sidebarLeft = document.querySelector('#sidebar-left .nano-content');
+
+						sidebarLeft.scrollTop = initialPosition;
+					}
+				}
+            </script>
+
+        </div>
+
+    }
+
+</aside>
+

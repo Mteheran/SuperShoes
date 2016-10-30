@@ -1,0 +1,51 @@
+﻿@model IEnumerable<ShuperShoesApp.Entities.Store>
+
+@{
+    ViewBag.Title = SuperShoesApp.Resources.Main.Stores;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="panel panel-featured">
+    <header class="panel-heading">
+        <h2 class="panel-title">@SuperShoesApp.Resources.Main.Stores</h2>
+    </header>
+    <div class="panel-body">
+        <div class="mb-md">
+            <a class="btn btn-primary" href="@Url.Action("Create")" title="@SuperShoesApp.Resources.Main.Create">
+                @SuperShoesApp.Resources.Main.Create <i class="fa fa-plus"></i>
+            </a>
+        </div>
+        <table class="table table-bordered table-striped mb-none" id="datatable-default">
+            <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Address)
+                        </th>
+                        <th></th>
+                    </tr>
+              </thead>
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Address)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |                          
+                            @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+</table>
+    </div>
+</section>

@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - @SuperShoesApp.Resources.Main.SuperShoesApp</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <section class="body">
+
+        <!-- start: header -->
+        <header class="header">
+            @Html.Partial("_Header")
+        </header>
+        <!-- end: header -->
+
+        <div class="inner-wrapper">
+            @Html.Partial("_MainMenu")
+
+            <section role="main" class="content-body">
+                @RenderBody()
+            </section>
+        </div>
+    </section>
+
+    @Scripts.Render("~/bundles/vendor")
+    @Scripts.Render("~/bundles/specificvendor")
+    @Scripts.Render("~/bundles/theme")
+    @Scripts.Render("~/bundles/myscripts")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
