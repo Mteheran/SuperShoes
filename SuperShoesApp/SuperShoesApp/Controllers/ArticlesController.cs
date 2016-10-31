@@ -1,5 +1,6 @@
 ﻿using ShuperShoesApp.Entities;
 using SuperShoesApp.Services.Contracts;
+using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
@@ -11,10 +12,13 @@ namespace SuperShoesApp.Controllers
     {
 
         IArticlesService Service;
+        IStoresService StoreService;
 
-        public ArticlesController(IArticlesService service)
+        public ArticlesController(IArticlesService service, IStoresService storeservice)
         {
             Service = service;
+            StoreService = storeservice;
+
         }
 
         // GET: Articles
@@ -25,9 +29,47 @@ namespace SuperShoesApp.Controllers
             return View(lst);
         }
 
+
+        public async Task<ActionResult> ByStore(string Id)
+        {
+            await LoadDropDownLists();
+
+            if (!string.IsNullOrEmpty(Id) )
+            {
+                int store = int.Parse(Id);
+                var lst = await Service.GetByStore<Article>(store);
+
+                var bystore = new ArticlesByStoreViewModel() { Store_Id = store, listArticles = lst };
+
+                return View(bystore);
+            }
+            else
+            {
+                return View(new ArticlesByStoreViewModel() { Store_Id = 0, listArticles = new List<Article>() });
+            }
+          
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> GetByStore()
+        {
+            string storeid = Request.Form["Store_Id"];
+            if (!string.IsNullOrEmpty(storeid))
+            {
+                return RedirectToAction("ByStore/" + storeid);
+            }
+            else
+            {
+                return RedirectToAction("ByStore");
+            }
+
+        }
+
         // GET: Articles/Create
         public async Task<ActionResult> Create()
         {
+            await LoadDropDownLists();
+
             return View();
         }
 
@@ -45,6 +87,8 @@ namespace SuperShoesApp.Controllers
 
                     return RedirectToAction("Index");
                 }
+
+                await LoadDropDownLists();
 
                 return View();
             }
@@ -65,6 +109,8 @@ namespace SuperShoesApp.Controllers
             if (article == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
+            await LoadDropDownLists();
+
             return View(article);
         }
 
@@ -81,6 +127,8 @@ namespace SuperShoesApp.Controllers
 
                     return RedirectToAction("Index");
                 }
+
+                await LoadDropDownLists();
 
                 return View();
             }
@@ -128,5 +176,15 @@ namespace SuperShoesApp.Controllers
                 return View();
             }
         }
+
+        private async Task LoadDropDownLists()
+        {
+            var ct = await StoreService.Get<Store>();
+
+            ViewData["Stores"] = new SelectList(ct, "Id", "Name");
+        }
+
+
+
     }
 }

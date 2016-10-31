@@ -8,7 +8,7 @@ using System.Web.Http;
 
 namespace SuperArticlesApp.Api.Controllers
 {
-    [RoutePrefix("api/services/Articles")]
+    [RoutePrefix("api/services/articles")]
     public class ArticlesController : ApiController
     {
         SuperShoesApp.Api.Data.SuperShoesDBEntities context = new SuperShoesApp.Api.Data.SuperShoesDBEntities();
@@ -25,6 +25,13 @@ namespace SuperArticlesApp.Api.Controllers
         public IHttpActionResult Articles(int id)
         {
             return Ok(context.Articles.SingleOrDefault(p => p.Id == id));
+        }
+
+        [HttpGet]
+        [Route("stores/{id}")]
+        public IHttpActionResult ByStore(int id)
+        {
+            return Ok(context.Articles.Where(p => p.Store_id == id));
         }
 
         [HttpPost]

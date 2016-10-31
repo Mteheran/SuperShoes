@@ -10,8 +10,7 @@ namespace ShuperShoesApp.Entities
         [Required]
         [Display(Name = "Nombre")]
         public string Name { get; set; }
-
-        [Required]
+       
         [Display(Name = "Descripción")]
         public string Description { get; set; }
 

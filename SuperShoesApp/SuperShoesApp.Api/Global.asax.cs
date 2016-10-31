@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SuperShoesApp.Api.Filters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -18,6 +19,8 @@ namespace SuperShoesApp.Api
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            var filters = System.Web.Http.GlobalConfiguration.Configuration.Filters;
+            filters.Add(new BasicAuthenticationAttribute());
         }
     }
 }

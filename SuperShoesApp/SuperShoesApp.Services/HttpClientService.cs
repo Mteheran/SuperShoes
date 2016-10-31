@@ -1,8 +1,11 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 
@@ -21,6 +24,8 @@ namespace SuperShoesApp.Services
             {
                 string bodyRequest = JsonConvert.SerializeObject(request);
 
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Authorization", GetAuthorizationInfo());
+
                 return await client.PostAsync(serviceUrl, new StringContent(bodyRequest, System.Text.Encoding.UTF8, "application/json"));
             }
         }
@@ -30,6 +35,8 @@ namespace SuperShoesApp.Services
             using (var client = new HttpClient())
             {              
                 var bodyRequest = JsonConvert.SerializeObject(request);
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Authorization", GetAuthorizationInfo());
+
                 return await client.PutAsync(serviceUrl, new StringContent(bodyRequest, System.Text.Encoding.UTF8, "application/json"));
             }
         }
@@ -37,7 +44,9 @@ namespace SuperShoesApp.Services
         public async Task<HttpResponseMessage> GetAsync(string serviceUrl)
         {
             using (var client = new HttpClient())
-            {              
+            {
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Authorization", GetAuthorizationInfo());
+
                 return await client.GetAsync(new Uri(serviceUrl));
             }
         }
@@ -45,7 +54,9 @@ namespace SuperShoesApp.Services
         public async Task<HttpResponseMessage> DeleteAsync(string serviceUrl)
         {
             using (var client = new HttpClient())
-            {              
+            {
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Authorization", GetAuthorizationInfo());
+
                 return await client.DeleteAsync(serviceUrl);
             }
         }
@@ -54,6 +65,8 @@ namespace SuperShoesApp.Services
         {
             using (var client = new HttpClient())
             {
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Authorization", GetAuthorizationInfo());
+
                 return await client.GetByteArrayAsync(serviceUrl);
             }
         }
@@ -69,6 +82,9 @@ namespace SuperShoesApp.Services
                     Content = new StringContent(bodyRequest, System.Text.Encoding.UTF8, "application/json")
                 };
 
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Authorization", GetAuthorizationInfo());
+
+
                 return await client.SendAsync(requestMessge);
             }
         }
@@ -76,6 +92,11 @@ namespace SuperShoesApp.Services
         public void Dispose()
         {
 
+        }
+
+        private string GetAuthorizationInfo()
+        {
+            return Convert.ToBase64String(Encoding.UTF8.GetBytes(ConfigurationManager.AppSettings["user"])) + ":" + Convert.ToBase64String(Encoding.UTF8.GetBytes(ConfigurationManager.AppSettings["password"]));
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Web.Http;
 using Microsoft.Owin.Security.OAuth;
 using Newtonsoft.Json.Serialization;
+using SuperShoesApp.Api.Filters;
 
 namespace SuperShoesApp.Api
 {
@@ -29,6 +30,9 @@ namespace SuperShoesApp.Api
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+
+            //config.Filters.Add(new BasicAuthenticationAttribute());
         }
     }
 }

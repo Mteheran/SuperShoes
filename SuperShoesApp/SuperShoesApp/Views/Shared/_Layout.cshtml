@@ -22,10 +22,12 @@
 
             <section role="main" class="content-body">
                 @RenderBody()
-            </section>
-        </div>
+                <footer>
+                    @Html.Partial("_Footer")
+                </footer>
+            </section>           
+        </div>      
     </section>
-
     @Scripts.Render("~/bundles/vendor")
     @Scripts.Render("~/bundles/specificvendor")
     @Scripts.Render("~/bundles/theme")

@@ -13,5 +13,6 @@ namespace SuperShoesApp.Services.Contracts
         Task<T> Create<T>(T Item);
         Task<T> Edit<T>(T Item);
         Task<T> Delete<T>(int id);
+        Task<IEnumerable<T>> GetByStore<T>(int Id);
     }
 }

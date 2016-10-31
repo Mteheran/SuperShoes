@@ -37,6 +37,15 @@ namespace SuperShoesApp.Services
             }
         }
 
+        public async Task<IEnumerable<T>> GetByStore<T>(int Id)
+        {
+            using (HttpClientService client = new HttpClientService())
+            {
+                HttpResponseMessage response = await client.GetAsync(baseUrl + "/stores/" + Id);
+                return await JsonHelper.Deserialize<IEnumerable<T>>(response);
+            }
+        }
+
         public async Task<T> Create<T>(T Item)
         {
 
