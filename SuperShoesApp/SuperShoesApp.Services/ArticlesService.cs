@@ -1,4 +1,6 @@
-﻿using SuperShoesApp.Services.Contracts;
+﻿using ShuperShoesApp.Entities;
+using ShuperShoesApp.Entities.Results;
+using SuperShoesApp.Services.Contracts;
 using SuperShoesApp.Services.Helpers;
 using System.Collections.Generic;
 using System.Configuration;
@@ -10,20 +12,20 @@ namespace SuperShoesApp.Services
     public class ArticlesService: IArticlesService
     {
 
-          string baseUrl;
+        string baseUrl;
 
-          public ArticlesService()
+        public ArticlesService()
         {
             baseUrl = ConfigurationManager.AppSettings["ApiUrl"] + "services/articles";
         }
 
-        public async Task<IEnumerable<T>> Get<T>()
+        public async Task<ResultArticles> Get()
         {
 
             using (HttpClientService client = new HttpClientService())
             {
                 HttpResponseMessage response = await client.GetAsync(baseUrl);
-                return await JsonHelper.Deserialize<IEnumerable<T>>(response);
+                return await JsonHelper.Deserialize<ResultArticles>(response);
             }
         }
 
@@ -37,12 +39,12 @@ namespace SuperShoesApp.Services
             }
         }
 
-        public async Task<IEnumerable<T>> GetByStore<T>(int Id)
+        public async Task<ResultArticles> GetByStore(int Id)
         {
             using (HttpClientService client = new HttpClientService())
             {
                 HttpResponseMessage response = await client.GetAsync(baseUrl + "/stores/" + Id);
-                return await JsonHelper.Deserialize<IEnumerable<T>>(response);
+                return await JsonHelper.Deserialize<ResultArticles>(response);
             }
         }
 

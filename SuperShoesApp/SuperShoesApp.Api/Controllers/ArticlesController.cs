@@ -1,5 +1,7 @@
-﻿using SuperShoesApp.Api;
+﻿using ShuperShoesApp.Entities;
+using SuperShoesApp.Api;
 using SuperShoesApp.Api.Data;
+using SuperShoesApp.Api.Results;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +19,16 @@ namespace SuperArticlesApp.Api.Controllers
         [Route("")]
         public IHttpActionResult Articles()
         {
-            return Ok(context.Articles.ToList());
+            try
+            {            
+                var list = context.Articles.ToList();
+
+                return Ok(new ResultArticlesApi() { Success = true, articles = list, Total_elements = list.Count });
+            }
+            catch (Exception ex)
+            {
+                return Ok(new ResultArticlesApi() { Error_msg = ex.Message, Success = false, Error_code = 500 });
+            }
         }
 
         [HttpGet]
@@ -31,7 +42,16 @@ namespace SuperArticlesApp.Api.Controllers
         [Route("stores/{id}")]
         public IHttpActionResult ByStore(int id)
         {
-            return Ok(context.Articles.Where(p => p.Store_id == id));
+            try
+            {
+                var list = context.Articles.Where(p => p.Store_id == id).ToList();
+
+                return Ok(new ResultArticlesApi() { Success = true, articles = list, Total_elements = list.Count });
+            }
+            catch (Exception ex)
+            {
+                return Ok(new ResultArticlesApi() { Error_msg = ex.Message, Success = false, Error_code = 500 });
+            }
         }
 
         [HttpPost]

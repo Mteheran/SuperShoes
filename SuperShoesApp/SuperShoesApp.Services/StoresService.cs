@@ -1,4 +1,6 @@
-﻿using SuperShoesApp.Services.Contracts;
+﻿using ShuperShoesApp.Entities;
+using ShuperShoesApp.Entities.Results;
+using SuperShoesApp.Services.Contracts;
 using SuperShoesApp.Services.Helpers;
 using System.Collections.Generic;
 using System.Configuration;
@@ -16,13 +18,13 @@ namespace SuperShoesApp.Services
             baseUrl = ConfigurationManager.AppSettings["ApiUrl"] + "services/stores";
         }
 
-        public async Task<IEnumerable<T>> Get<T>()
+        public async Task<ResultStores> Get()
         {
 
             using (HttpClientService client = new HttpClientService())
             {
                 HttpResponseMessage response = await client.GetAsync(baseUrl);
-                return await JsonHelper.Deserialize<IEnumerable<T>>(response);
+                return await JsonHelper.Deserialize<ResultStores>(response);
             }
         }
 

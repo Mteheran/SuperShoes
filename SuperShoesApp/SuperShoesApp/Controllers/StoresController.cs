@@ -1,4 +1,5 @@
 ﻿using ShuperShoesApp.Entities;
+using SuperShoesApp.Helpers;
 using SuperShoesApp.Services.Contracts;
 using System.Net;
 using System.Threading.Tasks;
@@ -19,9 +20,11 @@ namespace SuperShoesApp.Controllers
         // GET: Stores
         public async Task<ActionResult> Index()
         {
-            var lst = await Service.Get<Store>();
+            var result = await Service.Get();
 
-            return View(lst);
+            ResultHelper.SetResult(this, result);
+
+            return View(result.stores);
         }
         
         // GET: Stores/Create

@@ -1,18 +1,17 @@
-﻿using System;
+﻿using ShuperShoesApp.Entities;
+using ShuperShoesApp.Entities.Results;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace SuperShoesApp.Services.Contracts
 {
     public interface IArticlesService
     {
-        Task<IEnumerable<T>> Get<T>();
+        Task<ResultArticles> Get();
         Task<T> Get<T>(int Id);
         Task<T> Create<T>(T Item);
         Task<T> Edit<T>(T Item);
         Task<T> Delete<T>(int id);
-        Task<IEnumerable<T>> GetByStore<T>(int Id);
+        Task<ResultArticles> GetByStore(int Id);
     }
 }

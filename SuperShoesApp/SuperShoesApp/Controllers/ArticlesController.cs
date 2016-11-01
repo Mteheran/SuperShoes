@@ -1,4 +1,5 @@
 ﻿using ShuperShoesApp.Entities;
+using SuperShoesApp.Helpers;
 using SuperShoesApp.Services.Contracts;
 using System.Collections.Generic;
 using System.Net;
@@ -24,9 +25,11 @@ namespace SuperShoesApp.Controllers
         // GET: Articles
         public async Task<ActionResult> Index()
         {
-            var lst = await Service.Get<Article>();
+            var result = await Service.Get();
 
-            return View(lst);
+            ResultHelper.SetResult(this, result);
+
+            return View(result.articles);
         }
 
 
@@ -37,9 +40,12 @@ namespace SuperShoesApp.Controllers
             if (!string.IsNullOrEmpty(Id) )
             {
                 int store = int.Parse(Id);
-                var lst = await Service.GetByStore<Article>(store);
 
-                var bystore = new ArticlesByStoreViewModel() { Store_Id = store, listArticles = lst };
+                var result = await Service.GetByStore(store);
+
+                ResultHelper.SetResult(this, result);
+
+                var bystore = new ArticlesByStoreViewModel() { Store_Id = store, listArticles = result.articles };
 
                 return View(bystore);
             }
@@ -179,9 +185,20 @@ namespace SuperShoesApp.Controllers
 
         private async Task LoadDropDownLists()
         {
-            var ct = await StoreService.Get<Store>();
+            var result = await StoreService.Get();
 
-            ViewData["Stores"] = new SelectList(ct, "Id", "Name");
+            ResultHelper.SetResult(this, result);
+
+            if (result.Success)
+            {
+                ViewData["Stores"] = new SelectList((List<Store>)result.stores, "Id", "Name");
+            }
+            else
+            {
+                ViewData["Stores"] = new SelectList(new List<Store>());
+            }
+
+        
         }
 
 

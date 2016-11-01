@@ -1,4 +1,6 @@
-﻿using SuperShoesApp.Api.Data;
+﻿using ShuperShoesApp.Entities;
+using ShuperShoesApp.Entities.Results;
+using SuperShoesApp.Api.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +18,17 @@ namespace SuperShoesApp.Api.Controllers
         [Route("")]
         public IHttpActionResult Stores()
         {
-            return Ok(context.Stores.ToList());
+            try
+            {
+                var list = context.Stores.ToList();
+
+                return Ok(new ResultStoresApi() { Success = true, stores = list, Total_elements = list.Count });
+            }
+            catch (Exception ex)
+            {
+                return Ok(new ResultStoresApi() { Error_msg = ex.Message, Success = false, Error_code = 500 });
+            }
+
         }
 
         [HttpGet]

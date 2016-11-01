@@ -222,6 +222,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ResultArticlesApi.cs" />
+    <Compile Include="Models\ResultStoresApi.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Startup.cs" />
@@ -313,6 +315,12 @@
   <ItemGroup>
     <Folder Include="Views\Shoes\" />
     <Folder Include="Views\Stores\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ShuperShoesApp.Entities\ShuperShoesApp.Entities.csproj">
+      <Project>{6ebee073-487e-4ab8-b7bb-56f453402409}</Project>
+      <Name>ShuperShoesApp.Entities</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -23,6 +23,7 @@
                 </div>
                 </fieldset>
         }
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <br />
                 <table class="table table-bordered table-striped mb-none" id="datatable-default">
                     <thead>
@@ -46,31 +47,34 @@
                         </tr>
                     </thead>
                     <tbody>
-
-                        @foreach (var item in Model.listArticles)
-                {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Name)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Description)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Price)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Total_in_shelf)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Total_in_vault)
-                                </td>
-                                <td>
-                                    @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
-                                    @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })
-                                </td>
-                            </tr>
-                }
+                        
+                        @if(Model!=null)
+                        {       
+                        foreach (var item in Model.listArticles)
+                            {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Name)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Description)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Price)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Total_in_shelf)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Total_in_vault)
+                                            </td>
+                                            <td>
+                                                @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
+                                                @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })
+                                            </td>
+                                        </tr>
+                            }
+                        }
                     </tbody>
 
                 </table>
