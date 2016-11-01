@@ -1,7 +1,9 @@
-﻿using System;
+﻿using ShuperShoesApp.Entities.Results;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Web;
 
@@ -35,7 +37,9 @@ namespace SuperShoesApp.Api.Filters
                     string password = Encoding.UTF8.GetString(Convert.FromBase64String(httpRequestHeaderValues[1]));
 
                     if (!username.Equals(ConfigurationManager.AppSettings["user"]) || !password.Equals(ConfigurationManager.AppSettings["password"]))
-                        actionContext.Response = new System.Net.Http.HttpResponseMessage(System.Net.HttpStatusCode.Unauthorized);
+                    {
+                        actionContext.Response = actionContext.Request.CreateResponse(new Result() { Error_code = 401, Success = false, Error_msg = "Error de autenticación del servicio" });
+                    }
 
                 }
 
