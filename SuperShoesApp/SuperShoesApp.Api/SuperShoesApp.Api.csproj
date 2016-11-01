@@ -222,7 +222,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ResultArticleApi.cs" />
     <Compile Include="Models\ResultArticlesApi.cs" />
+    <Compile Include="Models\ResultStoreApi.cs" />
     <Compile Include="Models\ResultStoresApi.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Results\ChallengeResult.cs" />

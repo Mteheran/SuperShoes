@@ -110,14 +110,14 @@ namespace SuperShoesApp.Controllers
             if (id == null || id == 0)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
-            var article = await Service.Get<Article>(id);
+            var result = await Service.Get<Article>(id);
 
-            if (article == null)
+            if (result == null || result.article == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
             await LoadDropDownLists();
 
-            return View(article);
+            return View(result.article);
         }
 
         // POST: Articles/Edit/5
@@ -152,12 +152,14 @@ namespace SuperShoesApp.Controllers
             if (id == null || id == 0)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
-            var article = await Service.Get<Article>(id);
+            var result = await Service.Get<Article>(id);
 
-            if (article == null)
+            if (result == null || result.article == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
-            return View(article);
+            await LoadDropDownLists();
+
+            return View(result.article);
         }
 
         // POST: Articles/Delete/5

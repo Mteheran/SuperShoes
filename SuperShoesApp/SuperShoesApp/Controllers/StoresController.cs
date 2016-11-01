@@ -62,12 +62,12 @@ namespace SuperShoesApp.Controllers
             if (id == null || id==0)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
-            var store = await Service.Get<Store>(id);
+            var result = await Service.Get<Store>(id);
 
-            if (store==null)
+            if (result == null || result.store==null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
-            return View(store);
+            return View(result.store);
         }
 
         // POST: Stores/Edit/5
@@ -100,12 +100,12 @@ namespace SuperShoesApp.Controllers
             if (id == null || id == 0)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
-            var store = await Service.Get<Store>(id);
+            var result = await Service.Get<Store>(id);
 
-            if (store == null)
+            if (result == null || result.store == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
-            return View(store);
+            return View(result.store);
         }
 
         // POST: Stores/Delete/5

@@ -35,7 +35,17 @@ namespace SuperShoesApp.Api.Controllers
         [Route("{id}")]
         public IHttpActionResult Stores(int id)
         {
-            return Ok(context.Stores.SingleOrDefault(p=> p.Id==id));
+            try
+            {
+                var store = context.Stores.SingleOrDefault(p => p.Id == id);
+
+                return Ok(new ResultStoreApi() { Success = true, store = store });
+            }
+            catch (Exception ex)
+            {
+                return Ok(new ResultStoreApi() { Error_msg = ex.Message, Success = false, Error_code = 500 });
+            }
+
         }
 
         [HttpPost]

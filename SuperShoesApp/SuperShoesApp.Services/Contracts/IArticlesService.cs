@@ -8,7 +8,7 @@ namespace SuperShoesApp.Services.Contracts
     public interface IArticlesService
     {
         Task<ResultArticles> Get();
-        Task<T> Get<T>(int Id);
+        Task<ResultArticle> Get<T>(int Id);
         Task<Result> Create<T>(T Item);
         Task<Result> Edit<T>(T Item);
         Task<Result> Delete<T>(int id);

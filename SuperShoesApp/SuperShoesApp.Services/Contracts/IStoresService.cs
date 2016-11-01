@@ -11,7 +11,7 @@ namespace SuperShoesApp.Services.Contracts
     public interface IStoresService
     {
         Task<ResultStores> Get();
-        Task<T> Get<T>(int Id);
+        Task<ResultStore> Get<T>(int Id);
         Task<Result> Create<T>(T Item);
         Task<Result> Edit<T>(T Item);
         Task<Result> Delete<T>(int id);

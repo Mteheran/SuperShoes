@@ -36,18 +36,45 @@ namespace SuperArticlesApp.Api.Controllers
         [Route("{id}")]
         public IHttpActionResult Articles(int id)
         {
-            return Ok(context.Articles.SingleOrDefault(p => p.Id == id));
+            try
+            {
+                var article = context.Articles.SingleOrDefault(p => p.Id == id);
+
+                return Ok(new ResultArticleApi() { Success = true, article = article});
+            }
+            catch (Exception ex)
+            {
+                return Ok(new ResultArticlesApi() { Error_msg = ex.Message, Success = false, Error_code = 500 });
+            }
+
         }
 
         [HttpGet]
         [Route("stores/{id}")]
-        public IHttpActionResult ByStore(int id)
+        public IHttpActionResult ByStore(string id)
         {
             try
             {
-                var list = context.Articles.Where(p => p.Store_id == id).ToList();
+                int intId = 0;
+                if (int.TryParse(id, out intId))
+                {
+                    if (context.Stores.Single(p => p.Id == intId) != null)
+                    {
 
-                return Ok(new ResultArticlesApi() { Success = true, articles = list, Total_elements = list.Count });
+                        var list = context.Articles.Where(p => p.Store_id == intId).ToList();
+
+                        return Ok(new ResultArticlesApi() { Success = true, articles = list, Total_elements = list.Count });
+
+                    }
+                    else
+                    {
+                        return Ok(new ResultArticlesApi() { Success = false, Error_code = 404, Error_msg = "Record not Found" });
+                    }
+                }
+                else
+                {
+                    return Ok(new ResultArticlesApi() { Success = false, Error_code = 400, Error_msg = "Bad Request" });
+                }
             }
             catch (Exception ex)
             {

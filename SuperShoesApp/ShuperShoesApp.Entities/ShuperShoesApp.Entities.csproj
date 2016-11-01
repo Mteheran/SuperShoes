@@ -45,7 +45,9 @@
     <Compile Include="ArticlesByStoreViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Results\Result.cs" />
+    <Compile Include="Results\ResultArticle.cs" />
     <Compile Include="Results\ResultArticles.cs" />
+    <Compile Include="Results\ResultStore.cs" />
     <Compile Include="Results\ResultStores.cs" />
     <Compile Include="Store.cs" />
   </ItemGroup>

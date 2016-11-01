@@ -29,12 +29,12 @@ namespace SuperShoesApp.Services
         }
 
 
-        public async Task<T> Get<T>(int Id)
+        public async Task<ResultStore> Get<T>(int Id)
         {
             using (HttpClientService client = new HttpClientService())
             {
                 HttpResponseMessage response = await client.GetAsync(baseUrl + "/" + Id);
-                return await JsonHelper.Deserialize<T>(response);
+                return await JsonHelper.Deserialize<ResultStore>(response);
             }
         }
 
