@@ -44,7 +44,7 @@ namespace SuperShoesApp.Api.Controllers
         {
             var newStore = context.Stores.Add(store);
             context.SaveChanges();
-            return Ok(newStore);
+            return Ok(new Result() { Success =true });
         }
 
         [HttpPut]
@@ -56,7 +56,7 @@ namespace SuperShoesApp.Api.Controllers
             storebd.Name = store.Name;
             storebd.Address = store.Address;
             context.SaveChanges();
-            return Ok(storebd);
+            return Ok(new Result() { Success = true });
         }
 
         [HttpPatch]
@@ -67,7 +67,7 @@ namespace SuperShoesApp.Api.Controllers
 
             var newStore = context.Stores.Remove(storebd);
             context.SaveChanges();
-            return Ok(newStore);
+            return Ok(new Result() { Success = true });
         }
     }
 }

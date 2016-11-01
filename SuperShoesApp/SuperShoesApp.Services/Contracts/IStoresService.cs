@@ -12,8 +12,8 @@ namespace SuperShoesApp.Services.Contracts
     {
         Task<ResultStores> Get();
         Task<T> Get<T>(int Id);
-        Task<T> Create<T>(T Item);
-        Task<T> Edit<T>(T Item);
-        Task<T> Delete<T>(int id);
+        Task<Result> Create<T>(T Item);
+        Task<Result> Edit<T>(T Item);
+        Task<Result> Delete<T>(int id);
     }
 }

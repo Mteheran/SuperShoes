@@ -1,4 +1,5 @@
 ﻿using ShuperShoesApp.Entities;
+using ShuperShoesApp.Entities.Results;
 using SuperShoesApp.Api;
 using SuperShoesApp.Api.Data;
 using SuperShoesApp.Api.Results;
@@ -61,7 +62,7 @@ namespace SuperArticlesApp.Api.Controllers
             
             var newArticle = context.Articles.Add(article);
             context.SaveChanges();
-            return Ok(newArticle);
+            return Ok(new Result() { Success = true });
         }
 
         [HttpPut]
@@ -78,7 +79,7 @@ namespace SuperArticlesApp.Api.Controllers
             articlebd.Store_id = article.Store_id;
 
             context.SaveChanges();
-            return Ok(articlebd);
+            return Ok(new Result() { Success = true });
         }
 
         [HttpPatch]
@@ -89,7 +90,7 @@ namespace SuperArticlesApp.Api.Controllers
 
             var newArticle = context.Articles.Remove(articlebd);
             context.SaveChanges();
-            return Ok(newArticle);
+            return Ok(new Result() { Success = true });
         }
     }
 }

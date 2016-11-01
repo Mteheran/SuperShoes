@@ -88,8 +88,8 @@ namespace SuperShoesApp.Controllers
                 if (ModelState.IsValid)
                 {
                     // TODO: Add insert logic here
-                    await Service.Create<Article>(article);
-
+                    var result = await Service.Create<Article>(article);
+                    ResultHelper.SetResult(this, result);
 
                     return RedirectToAction("Index");
                 }
@@ -129,8 +129,8 @@ namespace SuperShoesApp.Controllers
                 if (ModelState.IsValid)
                 {
                     // TODO: Add insert logic here
-                    await Service.Edit<Article>(article);
-
+                    var result = await Service.Edit<Article>(article);
+                    ResultHelper.SetResult(this, result);
                     return RedirectToAction("Index");
                 }
 
@@ -170,8 +170,8 @@ namespace SuperShoesApp.Controllers
                 if (ModelState.IsValid)
                 {
                     // TODO: Add insert logic here
-                    await Service.Delete<Article>(id);
-
+                    var result =  await Service.Delete<Article>(id);
+                    ResultHelper.SetResult(this, result);
                     return RedirectToAction("Index");
                 }
 
